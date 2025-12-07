@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>𝐂𝐢𝐧𝐞𝐂𝐫𝐢𝐭𝐞𝐪𝐮𝐞 𝙽𝙰𝟹𝙰</title>
+  <link rel="icon" type="image/png" href="SOURCE/Image/l1.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a href="#" class="brand-link" id="brandLink">
+        <div class="brand">
+          <img src="SOURCE/Image/l1.png" alt="CineCriteque Logo" />
+          <h1>𝐂𝐢𝐧𝐞𝐂𝐫𝐢𝐭𝐞𝐪𝐮𝐞</h1>
+        </div>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <input id="search" placeholder="Search movies..." />
+    </div>
+
+    <nav class="header-right">
+      <button class="nav-link" data-page="home">Home</button>
+      <button class="nav-link" data-page="about">About</button>
+      <button id="manageUsersBtn" class="btn btn-secondary hidden" data-page="manage-users">Manage Users</button>
+      <button id="addMovieBtn" class="btn btn-secondary hidden">Add Movie</button>
+
+      <button id="loginBtn" class="btn btn-red">Log In</button>
+
+      <div class="profile-dropdown hidden" id="profileDropdown">
+        <button class="profile-dropdown-toggle" id="profileDropdownToggle">
+
+          <img id="profileDropdownImg" src="SOURCE/Image/l1.png" alt="Profile" />
+
+          <span id="profileDropdownName">User</span>
+          <i class="bi bi-caret-down-fill"></i>
+
+          <div id="notificationIndicator" class="notification-indicator hidden"></div>
+        </button>
+        <div class="profile-dropdown-menu hidden" id="profileDropdownMenu">
+          <button class="dropdown-item" id="dropdownProfileBtn" data-page="profile">My Profile</button>
+          <button class="dropdown-item" id="dropdownLogoutBtn">Log Out</button>
+
+          <hr class="dropdown-divider">
+          <div id="notificationList">
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="homePage">
+
+      <section class="hero" id="homeHeroSection">
+        <h2>Movie reviews & community critiques</h2>
+        <p>Discover movies by genre, rate them, and join the discussion.</p>
+      </section>
+
+      <div class="feed-tabs">
+        <button id="allFeedTab" class="feed-tab-btn active" data-tab="all">All Movies</button>
+        <button id="friendsFeedTab" class="feed-tab-btn" data-tab="friends">Friends Feed</button>
+      </div>
+
+      <div id="allFeedContent">
+        <section id="featuredSection"></section>
+        <section class="controls">
+          <label>Genre:
+            <select id="genreSelect">
+              <option value="all">All</option>
+              <option>Action</option>
+              <option>Comedy</option>
+              <option>Drama</option>
+              <option>Horror</option>
+              <option>Sci-Fi</option>
+              <option>Romance</option>
+            </select>
+          </label>
+          <label>Sort:
+            <select id="sortSelect">
+              <option value="year_desc">Year (Newest)</option>
+              <option value="year_asc">Year (Oldest)</option>
+              <option value="title_asc">Title (A-Z)</option>
+              <option value="origin_asc">Origin (Local-National)</option>
+              <option value="origin_desc">Origin (National-Local)</option>
+            </select>
+          </label>
+        </section>
+        <section id="moviesGrid" class="grid"></section>
+        <div id="paginationContainer" class="pagination"></div>
+
+        <section id="recommendedSection" class="hidden"></section>
+      </div>
+
+      <div id="friendsFeedContent" class="hidden">
+      </div>
+    </section>
+
+    <section id="aboutPage" class="hidden">
+      <div class="hero">
+        <div class="about-content-wrapper">
+          <img src="SOURCE/Image/logo.png" alt="CineCriteque Logo" class="about-logo" />
+          <div class="about-text">
+            <h2>About CineCriteque</h2>
+            <p>
+              CineCriteque is built by BSIT NA-3A a movie review platform created to help people discover films, share
+              opinions, and explore different genres. Designed using HTML, CSS, and JavaScript, the website allows users
+              to browse movies, read details, and enjoy a simple and clean viewing experience.
+              <br><br>
+              Our goal is to make movie exploration easy, interactive, and enjoyable for everyone.
+            </p>
+            <p><strong>Version:</strong> 1.4</p>
+            <button id="triviaBtn" class="btn btn-secondary" style="margin-top: 20px;">🎬 Show Movie Trivia</button>
+            <div id="triviaDisplay" class="hidden"
+              style="margin-top: 20px; padding: 15px; background: var(--netflix-gray); border-radius: 4px;">
+              <h4 id="triviaQuestion" style="margin-top: 0;"></h4>
+              <p id="triviaAnswer" class="hidden"></p>
+              <button id="showAnswerBtn" class="btn btn-red"
+                style="font-size: 0.9rem; padding: 5px 10px; margin-top: 10px;">Show Answer</button>
+            </div>
+            <div class="social-links">
+              <h4>Connect With Us</h4>
+              <div class="icons">
+                <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook"><i
+                    class="bi bi-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram"><i
+                    class="bi bi-instagram"></i></a>
+                <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter/X"><i
+                    class="bi bi-twitter-x"></i></a>
+                <a href="mailto:contact@cinecriteque.com" title="Email Us"><i class="bi bi-envelope-fill"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profilePage" class="hidden">
+      <div class="hero">
+
+        <div class="profile-hero-img">
+          <img id="profilePageImg" alt="Profile Picture" />
+        </div>
+
+        <h2 id="profileUsername"></h2>
+        <p id="profileUserBlurb">Your activity and reviews.</p>
+
+        <div class="profile-hero-actions">
+          <button id="editProfileBtn" class="btn btn-secondary hidden">Edit Profile</button>
+          <button id="followUserBtn" class="btn btn-red hidden">Follow</button>
+        </div>
+      </div>
+
+      <h3 id="profileBadgeHeader">My Badges</h3>
+      <div id="profileBadgeList" class="badge-list"></div>
+
+      <h3>My Watchlist</h3>
+      <div id="profileWatchlistGrid" class="grid" style="margin-bottom: 30px;"></div>
+
+      <h3>My Reviews</h3>
+      <div id="profileReviewList" class="profile-review-list"></div>
+    </section>
+
+    <section id="userListPage" class="hidden">
+      <h2>User Management</h2>
+      <p>Here you can see all registered users and remove them if necessary.</p>
+      <div id="userListGrid" class="user-list-grid"></div>
+    </section>
+
+  </main>
+
+  <div id="movieModal" class="modal hidden">
+    <div class="modal-content">
+      <button id="closeModal" class="close">✕</button>
+
+      <div id="normalModalLayout">
+        <div class="modal-body-grid">
+          <div class="modal-poster-column">
+            <button id="normalBookmarkBtn" class="bookmark-btn hidden" title="Add to Watchlist"
+              style="position: absolute; top: 15px; right: 15px; z-index: 5;"><i
+                class="bi bi-bookmark-plus"></i></button>
+            <img id="modalPoster" src="" alt="Movie Poster" style="display: none;" />
+            <div id="trailerContainer" class="trailer-container hidden">
+              <iframe id="modalTrailer" width="560" height="315" src="" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="modal-details-column">
+            <h2 id="modalTitleNormal"></h2>
+            <p id="modalMetaNormal"></p>
+            <p id="modalDesc"></p>
+          </div>
+        </div>
+
+        <div class="review-section">
+          <hr>
+          <div class="review-content-grid">
+            <div class="review-display-column">
+              <div class="average-rating" id="averageRating"></div>
+              <div class="review-list" id="reviewListNormal"></div>
+            </div>
+            <div class="review-form-column">
+              <div class="review-form">
+                <h4>Leave a Review</h4>
+                <div class="star-rating">
+                  <input type="radio" id="star5Normal" name="ratingNormal" value="5"><label for="star5Normal">★</label>
+                  <input type="radio" id="star4Normal" name="ratingNormal" value="4"><label for="star4Normal">★</label>
+                  <input type="radio" id="star3Normal" name="ratingNormal" value="3"><label for="star3Normal">★</label>
+                  <input type="radio" id="star2Normal" name="ratingNormal" value="2"><label for="star2Normal">★</label>
+                  <input type="radio" id="star1Normal" name="ratingNormal" value="1"><label for="star1Normal">★</label>
+                </div>
+                <textarea id="reviewCommentNormal" rows="3" placeholder="Write your review..."></textarea>
+                <button id="submitReviewBtnNormal" class="btn btn-red">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="premiereModalLayout" class="hidden">
+        <div class="premiere-grid-layout">
+          <div class="premiere-video-main">
+            <div class="premiere-video-wrapper">
+              <button id="premiereBookmarkBtn" class="bookmark-btn hidden" title="Add to Watchlist"
+                style="position: absolute; top: 15px; right: 15px; z-index: 5;"><i
+                  class="bi bi-bookmark-plus"></i></button>
+              <iframe id="premiereTrailer" src="" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+            <div class="premiere-video-info">
+              <div class="premiere-info-left">
+                <div class="premiere-badge">
+                  <span class="live-dot"></span>LIVE
+                </div>
+                <div>
+                  <h2 id="premiereTitle"></h2>
+                  <p id="premiereMeta"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="premiere-chat-column">
+            <div class="premiere-chat-header">
+              <h4>Live Chat</h4>
+            </div>
+            <div class="premiere-chat-messages" id="reviewListPremiere"></div>
+            <div class="premiere-chat-input">
+              <div class="star-rating">
+                <input type="radio" id="star5Premiere" name="ratingPremiere" value="5"><label
+                  for="star5Premiere">★</label>
+                <input type="radio" id="star4Premiere" name="ratingPremiere" value="4"><label
+                  for="star4Premiere">★</label>
+                <input type="radio" id="star3Premiere" name="ratingPremiere" value="3"><label
+                  for="star3Premiere">★</label>
+                <input type="radio" id="star2Premiere" name="ratingPremiere" value="2"><label
+                  for="star2Premiere">★</label>
+                <input type="radio" id="star1Premiere" name="ratingPremiere" value="1"><label
+                  for="star1Premiere">★</label>
+              </div>
+              <textarea id="reviewCommentPremiere" placeholder="Say something..."></textarea>
+              <button id="submitReviewBtnPremiere" class="btn btn-red">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="authModal" class="modal hidden">
+    <div class="modal-content auth-panel" id="authPanel">
+      <div class="form-container sign-up-container">
+        <form class="auth-form" onsubmit="return false;">
+          <button type="button" id="closeAuthSignUp" class="close auth-close">✕</button>
+          <h3>Create Account</h3>
+
+          <input id="signUpUser" type="text" placeholder="Username" required />
+          <input id="signUpPass" type="password" placeholder="Password" required />
+          <input id="signUpPfp" type="text" placeholder="Profile Picture URL" required />
+
+          <button id="signUpBtn" class="btn btn-red">Sign Up</button>
+          <p class="auth-toggle-mobile"><a id="toggleSignInMobile">Already have an account? Log In</a></p>
+        </form>
+      </div>
+
+      <div class="form-container sign-in-container">
+        <form class="auth-form" onsubmit="return false;">
+          <button type="button" id="closeAuthSignIn" class="close auth-close">✕</button>
+          <h3>Log In</h3>
+
+          <input id="authUser" type="text" placeholder="Username" required />
+          <input id="authPass" type="password" placeholder="Password" required />
+
+          <button id="signInBtn" class="btn btn-red">Log In</button>
+          <p class="auth-toggle-mobile"><a id="toggleSignUpMobile">Don't have an account? Sign Up</a></p>
+        </form>
+      </div>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h2>Welcome Back!</h2>
+            <p>To keep connected with us please login with your personal info</p>
+            <button class="btn btn-secondary ghost" id="toggleSignIn">Log In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h2>Hello, Friend!</h2>
+            <p>Enter your personal details and start your journey with us</p>
+            <button class="btn btn-secondary ghost" id="toggleSignUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div id="adminPanel" class="modal hidden">
+    <div class="modal-content small">
+      <button id="closeAdmin" class="close">✕</button>
+      <h3 id="adminPanelTitle">Add Movie</h3>
+
+      <input id="movieTitle" type="text" placeholder="Title" required />
+      <input id="movieYear" type="number" placeholder="Year" required />
+
+      <label class="select-label" for="movieGenre">Genre</label>
+      <select id="movieGenre">
+        <option>Action</option>
+        <option>Comedy</option>
+        <option>Drama</option>
+        <option>Horror</option>
+        <option>Sci-Fi</option>
+        <option>Romance</option>
+      </select>
+
+      <label class="select-label" for="movieOrigin">Origin</label>
+      <select id="movieOrigin">
+        <option>Local</option>
+        <option>National</option>
+      </select>
+
+      <textarea id="movieDesc" rows="3" placeholder="Description" required></textarea>
+      <input id="moviePoster" type="text" placeholder="Poster Image URL" required />
+      <input id="movieTrailerUrl" type="text" placeholder="YouTube Trailer URL" required />
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="movieIsFeatured" name="isFeatured" />
+        <label for="movieIsFeatured">Set as a Featured Movie</label>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="movieIsPremiere" name="isPremiere" />
+        <label for="movieIsPremiere">Set as Premiere (Replaces Hero)</label>
+      </div>
+
+      <button id="saveAdminChangesBtn" class="btn btn-red">Add Movie</button>
+    </div>
+  </div>
+  <div id="editProfileModal" class="modal hidden">
+    <div class="modal-content small">
+      <button id="closeEditProfile" class="close">✕</button>
+      <h3>Edit Profile</h3>
+
+      <input id="editPfpUrl" type="text" placeholder="Profile Picture URL" required />
+
+      <input id="editNewPass" type="password" placeholder="New Password (optional)" required />
+      <input id="editConfirmPass" type="password" placeholder="Confirm New Password" required />
+
+      <button id="saveProfileChangesBtn" class="btn btn-red">Save Changes</button>
+    </div>
+  </div>
+
+  <div id="badgeModal" class="modal hidden">
+    <div class="badge-modal-content">
+      <button id="closeBadgeModal" class="close">✕</button>
+      <div class="badge-modal-icon" id="badgeModalIcon"></div>
+      <h2 id="badgeModalTitle">Badge Unlocked!</h2>
+      <p id="badgeModalDesc"></p>
+      <button id="confirmBadgeBtn" class="btn btn-red">Great!</button>
+    </div>
+  </div>
+
+  <div id="alertModal" class="modal hidden">
+    <div class="alert-modal-content">
+      <h2 id="alertTitle"></h2>
+      <p id="alertMessage"></p>
+      <button id="alertOkBtn" class="btn btn-red">OK</button>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal hidden">
+    <div class="alert-modal-content">
+      <h2 id="confirmTitle"></h2>
+      <p id="confirmMessage"></p>
+      <div class="confirm-actions">
+        <button id="confirmCancelBtn" class="btn btn-secondary">Cancel</button>
+        <button id="confirmOkBtn" class="btn btn-red">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-socials">
+      <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" title="Facebook"><i
+          class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" title="Instagram"><i
+          class="bi bi-instagram"></i></a>
+      <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" title="Twitter/X"><i
+          class="bi bi-twitter-x"></i></a>
+      <a href="mailto:contact@cinecriteque.com" title="Email Us"><i class="bi bi-envelope-fill"></i></a>
+    </div>
+    <p>© CineCriteque   ||   BSIT NA-3A 2025</p>
+  </footer>
+
+  <script src="JS/game.js"></script>
+</body>
+
+</html>
