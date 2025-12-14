@@ -1,0 +1,2 @@
+const SUPABASE_URL = 'https://cibplewqwfkqwqebxbbf.supabase.co'; // Project URL
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNpYnBsZXdxd2ZrcXdxZWJ4YmJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzMzc4MDMsImV4cCI6MjA4MDkxMzgwM30.pWLRecG9J0rETjhmF0LQqW2z0Pvby_iFl96AoumVX3g'; // Replace with your actual anon public key
